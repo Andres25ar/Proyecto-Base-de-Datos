@@ -8,7 +8,7 @@ class Order extends Model
 {
     protected $table = 'orders';
     protected $primaryKey = 'orderid';
-    public $timestamps = false; // Northwind no usa created_at / updated_at
+    public $timestamps = false; 
 
     protected $fillable = [
         'orderid',
@@ -27,19 +27,18 @@ class Order extends Model
         'shipcountry'
     ];
 
-    // RELACIÓN: orden pertenece a un cliente
+
     public function customer()
     {
         return $this->belongsTo(Customer::class, 'customerid', 'customerid');
     }
 
-    // RELACIÓN: orden pertenece a un empleado
+    
     public function employee()
     {
         return $this->belongsTo(Employee::class, 'employeeid', 'employeeid');
     }
 
-    // DETALLES (si la tabla existe: order_details)
     public function details()
     {
         return $this->hasMany(OrderDetail::class, 'orderid', 'orderid');
